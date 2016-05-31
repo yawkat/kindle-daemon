@@ -29,7 +29,7 @@ def send_mail(data):
 
 @app.route("/", methods=["POST"])
 def publish():
-    if "X-Api-Token" not in request.headers or request.headers["X-Api-Token"]:
+    if "X-Api-Token" not in request.headers or request.headers["X-Api-Token"] != config.api_key:
         return "Invalid api token", 403
 
     with tempfile.NamedTemporaryFile(suffix=".epub", delete=False) as epub:
